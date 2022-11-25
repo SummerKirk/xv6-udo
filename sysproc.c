@@ -79,7 +79,21 @@ int sys_uptime(void) {
 }
 
 int sys_shutdown(void){
+
+    int isRestart;
+
+    if(argint(0, & isRestart) == 1)
+    {
+        unsigned char good = 0x02;
+        while(good & 0x02){
+            good = inb(0x64);
+        }
+        return 0;
+    }
+
+    outb(0x64, 0xFE);       // outputs 0xfe to port 0x64, restarts os
+
     cprintf("shut down commencing");
-    outw (0x604,0x2000);    // outputs the value 0x2000 to port 0x604
+    outw (0x604,0x2000);    // outputs the value 0x2000 to port 0x604 shuts down os
     return 0;               //is this reached?
 }
