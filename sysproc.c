@@ -77,3 +77,8 @@ int sys_uptime(void) {
     release(&tickslock);
     return xticks;
 }
+
+int sys_shutdown(void){
+    outw (0x604,0x2000);    // outputs the value 0x2000 to port 0x604
+    return 0;               //is this reached?
+}

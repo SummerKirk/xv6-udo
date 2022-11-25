@@ -35,7 +35,8 @@ my @syscalls = (
                 "link",
                 "mkdir",
 				"close",
-                "getch"
+                "getch",
+				"shutdown"
 			   );
 
 my $i;			   
